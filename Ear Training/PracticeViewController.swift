@@ -26,6 +26,8 @@ class PracticeViewController: UIViewController {
    
     @IBOutlet weak var PracticeUILabel: UILabel!
     
+    @IBOutlet weak var backButton: UIButton!
+    
     func disableGuesses() {
         PracticeGuessC.isEnabled = false ; PracticeGuessC.setTitleColor(.lightGray, for: .disabled)
         PracticeGuessD.isEnabled = false ; PracticeGuessD.setTitleColor(.lightGray, for: .disabled)
@@ -127,8 +129,7 @@ class PracticeViewController: UIViewController {
         
         generateRandom(randomNote: &randomNote)
         playSound(soundName: randomNote)
-        
-        //PracticeUILabel.text = randomNote
+
     }
     
     @IBAction func repeatSound(_ sender: UIButton) {
@@ -171,4 +172,9 @@ class PracticeViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func backisPressed(_ sender: UIButton) {
+        dismiss(animated: true)
+    }
+    
  }

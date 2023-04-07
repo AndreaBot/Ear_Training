@@ -9,7 +9,7 @@ import UIKit
 import AVFoundation
 
 
-class ViewController: UIViewController {
+class GameViewController: UIViewController {
     
     var player: AVAudioPlayer!
     
@@ -26,6 +26,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var startTimer: UIButton!
     
     @IBOutlet weak var progressBar: UIProgressView!
+    
+    @IBOutlet weak var backButton: UIButton!
+    
     
     
     
@@ -95,7 +98,6 @@ class ViewController: UIViewController {
         startTimer.layer.cornerRadius = 15
         progressBar.progress = 0
         progressBar.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
-        //progressBar.layer.cornerRadius = 5
         
     }
     
@@ -131,7 +133,7 @@ class ViewController: UIViewController {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
             self.UILabel.backgroundColor = UIColor(white: 1, alpha: 0)
-            //self.UILabel.text = self.randomNote
+        
         }
         enableGuesses()
         enableBorder()
@@ -231,17 +233,17 @@ class ViewController: UIViewController {
         generateRandom(randomNote: &randomNote)
         playSound(soundName: randomNote)
         
-        //UILabel.text = randomNote
-        
         totalCorrect = 0
         totalErrors = 0
         
         if startTimer.currentTitle == "START TIMER" {
             startTimer.setTitle("STOP TIMER", for: .normal)
             activateTimer()
+            backButton.isEnabled = false
         } else if startTimer.currentTitle == "STOP TIMER" {
             startTimer.setTitle("START TIMER", for: .normal)
             timer.invalidate()
+            backButton.isEnabled = true
             playSound(soundName: "Silence")
             repeatSound.isEnabled = false
             repeatSound.layer.borderColor = CGColor(gray: 0.3, alpha: 0.35)
@@ -254,7 +256,7 @@ class ViewController: UIViewController {
             
             timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) {
                 (Timer) in
-                //print(self.secondsPassed)
+                
                 if self.secondsPassed < self.totalTime {
                     
                     let percentageProgress = Float(self.secondsPassed) / Float(self.totalTime)
@@ -275,6 +277,11 @@ class ViewController: UIViewController {
                 }
             }
         }
+    
+    @IBAction func backIsPressed(_ sender: UIButton) {
+        dismiss(animated: true)
+    }
+    
  }
     
    

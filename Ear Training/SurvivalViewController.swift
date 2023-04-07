@@ -25,6 +25,7 @@ class SurvivalViewController: UIViewController {
     
     @IBOutlet weak var progressBar: UIProgressView!
     
+    @IBOutlet weak var backButton: UIButton!
     
     
     func disableGuesses() {
@@ -80,7 +81,7 @@ class SurvivalViewController: UIViewController {
         survivalGame()
         disableGuesses()
         disableBorder()
-        
+
         let guessArray = [guessC, guessD, guessE, guessF, guessG, guessA, guessB]
         for x in guessArray {
             x!.frame.size.height = 52
@@ -90,13 +91,14 @@ class SurvivalViewController: UIViewController {
             x!.backgroundColor = UIColor(named: "black")
         }
 
-        
         startTimer.setTitle("START TIMER", for: .normal)
         startTimer.layer.cornerRadius = 15
         progressBar.progress = 0
         progressBar.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
-        
-        
+
+        let image = UIImage(systemName: "chevron.backward.circle")
+        backButton.setImage(image, for: .normal)
+        backButton.tintColor = UIColor(red: 1, green: 0.35, blue: 0, alpha: 1)
     }
     
     func endGame() {
@@ -134,7 +136,6 @@ class SurvivalViewController: UIViewController {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
             self.UILabel.backgroundColor = UIColor(white: 1, alpha: 0)
-            //self.UILabel.text = self.randomNote
         }
         enableGuesses()
         enableBorder()
@@ -220,20 +221,20 @@ class SurvivalViewController: UIViewController {
         generateRandom(randomNote: &randomNote)
         playSound(soundName: randomNote)
         
-        //UILabel.text = randomNote
-        
         totalCorrect = 0
         totalErrors = 0
         
         if startTimer.currentTitle == "START TIMER" {
             startTimer.setTitle("STOP TIMER", for: .normal)
             activateTimer()
+            backButton.isEnabled = false
         } else if startTimer.currentTitle == "STOP TIMER" {
             startTimer.setTitle("START TIMER", for: .normal)
             timer.invalidate()
             playSound(soundName: "Silence")
             disableGuesses()
             disableBorder()
+            backButton.isEnabled = true
         }
     }
      
@@ -241,7 +242,7 @@ class SurvivalViewController: UIViewController {
             
             timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) {
                 (Timer) in
-                //print(self.secondsPassed) 
+                
                 if self.secondsPassed < self.totalTime {
                     
                     let percentageProgress = Float(self.secondsPassed) / Float(self.totalTime)
@@ -265,6 +266,11 @@ class SurvivalViewController: UIViewController {
                 }
             }
         }
+    
+    @IBAction func backIsPressed(_ sender: UIButton) {
+        dismiss(animated: true)
+    }
+    
  }
     
 

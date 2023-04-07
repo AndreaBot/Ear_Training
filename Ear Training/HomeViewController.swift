@@ -103,7 +103,7 @@ class HomeViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToNext" {
-            let destinationVC = segue.destination as? ViewController
+            let destinationVC = segue.destination as? GameViewController
             destinationVC?.totalTime = totalTime
         }
         
