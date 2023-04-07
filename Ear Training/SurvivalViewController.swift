@@ -252,6 +252,7 @@ class SurvivalViewController: UIViewController {
                     
                 } else {
                     Timer.invalidate()
+                    self.backButton.isEnabled = true
                     self.progressBar.progress = 1.0
                     self.startTimer.setTitle("START TIMER", for: .normal)
                     self.disableGuesses()
