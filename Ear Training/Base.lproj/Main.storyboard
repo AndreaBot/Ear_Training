@@ -361,6 +361,7 @@
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PHm-Vl-2V1" userLabel="PracticePlaySound">
                                                         <rect key="frame" x="0.0" y="0.0" width="240" height="50"/>
+                                                        <color key="backgroundColor" name="blueColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="0zv-qv-m0z"/>
                                                             <constraint firstAttribute="height" constant="50" id="q5A-NY-ePx"/>
@@ -376,6 +377,7 @@
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fmh-mU-cIi" userLabel="PracticeRepeatSound">
                                                         <rect key="frame" x="30" y="90" width="180" height="50"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="T7K-2r-boo"/>
                                                             <constraint firstAttribute="height" constant="50" id="o70-ft-700"/>
@@ -423,17 +425,17 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="PracticeGuessA" destination="Het-ZT-G6Y" id="dj3-LC-lNy"/>
-                        <outlet property="PracticeGuessB" destination="ZvL-eL-HJf" id="t9s-PI-b2S"/>
-                        <outlet property="PracticeGuessC" destination="z02-1i-mdI" id="WoJ-uX-pCJ"/>
-                        <outlet property="PracticeGuessD" destination="Ju2-Ls-LZ9" id="w8C-Ub-NDA"/>
-                        <outlet property="PracticeGuessE" destination="z5c-CY-IPB" id="HdA-Ng-lAP"/>
-                        <outlet property="PracticeGuessF" destination="nVm-gt-ZAm" id="Sb1-gp-y4f"/>
-                        <outlet property="PracticeGuessG" destination="rU1-L9-Dvd" id="OYm-eL-GNj"/>
-                        <outlet property="PracticePlaySound" destination="PHm-Vl-2V1" id="HBM-sJ-FKT"/>
-                        <outlet property="PracticeRepeatSound" destination="fmh-mU-cIi" id="pzF-hC-wZv"/>
-                        <outlet property="PracticeUILabel" destination="ykk-1F-0uy" id="h4G-gd-0Lw"/>
                         <outlet property="backButton" destination="39P-vM-wxk" id="mIx-Bn-nmn"/>
+                        <outlet property="playButton" destination="PHm-Vl-2V1" id="HBM-sJ-FKT"/>
+                        <outlet property="repeatButton" destination="fmh-mU-cIi" id="pzF-hC-wZv"/>
+                        <outlet property="topLabel" destination="ykk-1F-0uy" id="h4G-gd-0Lw"/>
+                        <outletCollection property="guessButtons" destination="z02-1i-mdI" collectionClass="NSMutableArray" id="Wi7-GS-L9P"/>
+                        <outletCollection property="guessButtons" destination="Ju2-Ls-LZ9" collectionClass="NSMutableArray" id="A0E-up-KAg"/>
+                        <outletCollection property="guessButtons" destination="z5c-CY-IPB" collectionClass="NSMutableArray" id="Lj3-Rn-MFG"/>
+                        <outletCollection property="guessButtons" destination="nVm-gt-ZAm" collectionClass="NSMutableArray" id="ixe-QV-nY7"/>
+                        <outletCollection property="guessButtons" destination="rU1-L9-Dvd" collectionClass="NSMutableArray" id="hGU-Hn-G53"/>
+                        <outletCollection property="guessButtons" destination="Het-ZT-G6Y" collectionClass="NSMutableArray" id="soP-fF-oaE"/>
+                        <outletCollection property="guessButtons" destination="ZvL-eL-HJf" collectionClass="NSMutableArray" id="uI9-VV-D5W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ofb-lO-jEn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
