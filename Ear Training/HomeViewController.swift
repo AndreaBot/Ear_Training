@@ -19,7 +19,7 @@ class HomeViewController: UIViewController {
     
     var totalTime: Int = 0 {
         didSet {
-            var alertMessage = totalTime == 30 ? "Easy Mode" : "Hard Mode"
+            let alertMessage = totalTime == 30 ? "Easy Mode" : "Hard Mode"
             let explanation = UIAlertController(title: alertMessage, message: "Guess as many notes as you can in \(totalTime) seconds.", preferredStyle: .alert)
             explanation.addAction(UIAlertAction(title: "OK", style: .default))
             present(explanation, animated: true)
@@ -32,7 +32,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         continueButton.isEnabled = false
         for button in allButtons {
-            button.layer.cornerRadius = 15
+            button.layer.cornerRadius = button.frame.height/3
         }
     }
     
