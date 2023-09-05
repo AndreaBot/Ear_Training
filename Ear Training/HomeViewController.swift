@@ -19,14 +19,14 @@ class HomeViewController: UIViewController {
     
     var totalTime: Int = 0 {
         didSet {
-            let alertMessage = totalTime == 30 ? "Easy Mode" : "Hard Mode"
-            let explanation = UIAlertController(title: alertMessage, message: "Guess as many notes as you can in \(totalTime) seconds.", preferredStyle: .alert)
-            explanation.addAction(UIAlertAction(title: "OK", style: .default))
-            present(explanation, animated: true)
             continueButton.backgroundColor = UIColor(named: "blueColor")
             continueButton.isEnabled = true
         }
     }
+    
+    var backgroundColor: UIColor?
+    var accentColor: UIColor?
+    var survivalModeActivated: Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,13 +58,31 @@ class HomeViewController: UIViewController {
     
     @IBAction func proceedToGame(_ sender: UIButton) {
         self.vibration.notificationOccurred(.success)
+        
+        if sender.currentTitle == "Continue" {
+            backgroundColor = .white
+            accentColor = UIColor(named: "blueColor")
+            survivalModeActivated = false
+        } else {
+            backgroundColor = .black
+            accentColor = UIColor(named: "orangeColor")
+            survivalModeActivated = true
+            totalTime = 10
+        }
+        
+        performSegue(withIdentifier: "goToGame", sender: self)
     }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToNext" {
+        if segue.identifier == "goToGame" {
             let destinationVC = segue.destination as? GameViewController
             destinationVC?.totalTime = totalTime
+            
+            destinationVC?.backgroundColor = backgroundColor
+            destinationVC?.accentColor = accentColor
+            destinationVC?.survivalModeActivated = survivalModeActivated
+            
         }
     }
 }

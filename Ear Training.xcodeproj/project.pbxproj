@@ -16,7 +16,6 @@
 		620AC6D329B9386A00EA85E4 /* E.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 620AC6CC29B9386A00EA85E4 /* E.mp3 */; };
 		620EDD9B29BA8287008DB85E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620EDD9A29BA8286008DB85E /* HomeViewController.swift */; };
 		620F523C29BF995C0064F537 /* Silence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 620F523B29BF995C0064F537 /* Silence.mp3 */; };
-		620F523E29BFC41D0064F537 /* SurvivalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620F523D29BFC41D0064F537 /* SurvivalViewController.swift */; };
 		623333BB29B386B800644ADB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623333BA29B386B800644ADB /* AppDelegate.swift */; };
 		623333BD29B386B800644ADB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623333BC29B386B800644ADB /* SceneDelegate.swift */; };
 		623333BF29B386B800644ADB /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623333BE29B386B800644ADB /* GameViewController.swift */; };
@@ -36,7 +35,6 @@
 		620AC6CC29B9386A00EA85E4 /* E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = E.mp3; sourceTree = "<group>"; };
 		620EDD9A29BA8286008DB85E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		620F523B29BF995C0064F537 /* Silence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Silence.mp3; sourceTree = "<group>"; };
-		620F523D29BFC41D0064F537 /* SurvivalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurvivalViewController.swift; sourceTree = "<group>"; };
 		623333B729B386B800644ADB /* Ear Training.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ear Training.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		623333BA29B386B800644ADB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		623333BC29B386B800644ADB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -99,7 +97,6 @@
 				620EDD9A29BA8286008DB85E /* HomeViewController.swift */,
 				62C737FC29BC8D50006B9CC2 /* PracticeViewController.swift */,
 				623333BE29B386B800644ADB /* GameViewController.swift */,
-				620F523D29BFC41D0064F537 /* SurvivalViewController.swift */,
 				623333C029B386B800644ADB /* Main.storyboard */,
 				623333C329B386B900644ADB /* Assets.xcassets */,
 				623333C529B386B900644ADB /* LaunchScreen.storyboard */,
@@ -188,7 +185,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				620F523E29BFC41D0064F537 /* SurvivalViewController.swift in Sources */,
 				623333BF29B386B800644ADB /* GameViewController.swift in Sources */,
 				623333BB29B386B800644ADB /* AppDelegate.swift in Sources */,
 				62C737FD29BC8D50006B9CC2 /* PracticeViewController.swift in Sources */,
