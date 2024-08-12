@@ -24,65 +24,10 @@ class GameViewController: UIViewController {
     let vibration = UINotificationFeedbackGenerator()
     var timer = Timer()
     
-    var totalTime = 0
-    var secondsPassed = 0
-    
-    var streakCounter = 0 {
-        didSet {
-            streakLabel.alpha = 1
-            if streakCounter == 5 {
-                streakLabel.text = "You're on a streak! \(streakCounter) correct guesses!"
-                streakLabel.backgroundColor = backgroundColor
-            } else if streakCounter >= 10 && streakCounter % 5 == 0 {
-                streakLabel.text = "Insane! \(streakCounter) correct guesses!"
-                streakLabel.backgroundColor = .yellow
-            }
-            else {
-                streakLabel.alpha = 0
-            }
-        }
-    }
-    var consecErrors = 0 {
-        didSet {
-            if consecErrors > 0 {
-                topLabel.backgroundColor = .red
-                topLabel.alpha = 1
-            }
-            if consecErrors == 1 {
-                topLabel.text = "Wrong"
-            } else if consecErrors == 2 {
-                topLabel.text = "Keep trying!"
-            } else if consecErrors > 2 {
-                topLabel.text = "Don't give up!"
-            }
-        }
-    }
-    var totalCorrect = 0 {
-        didSet {
-            if totalCorrect > 0 {
-                topLabel.alpha = 1
-                topLabel.text = "Correct"
-                topLabel.backgroundColor = .green
-            }
-            if survivalModeActivated == true {
-                secondsPassed -= 2
-            }
-        }
-    }
-    var totalErrors = 0 {
-        didSet {
-            if survivalModeActivated == true {
-                secondsPassed += 2
-            }
-        }
-    }
-    
-    let notes = ["C", "D", "E", "F", "G", "A", "B"]
-    var randomNote = ""
+    var gameModel = GameModel()
     
     var backgroundColor: UIColor?
     var accentColor: UIColor?
-    var survivalModeActivated: Bool?
     
     func setupUI() {
         view.backgroundColor = backgroundColor
@@ -92,11 +37,11 @@ class GameViewController: UIViewController {
         disableGuesses()
         
         repeatButton.isEnabled = false
-        repeatButton.alpha = survivalModeActivated == true ? 0 : 1
+        repeatButton.alpha = gameModel.survivalModeActivated == true ? 0 : 1
         repeatButton.layer.cornerRadius = repeatButton.frame.height/3
         repeatButton.layer.borderWidth = 3
         repeatButton.layer.borderColor = accentColor?.cgColor
-        repeatButton.tintColor = survivalModeActivated == true ? .white : .black
+        repeatButton.tintColor = gameModel.survivalModeActivated == true ? .white : .black
         
         startTimer.layer.cornerRadius = startTimer.frame.height/3
         startTimer.backgroundColor = accentColor
@@ -107,7 +52,7 @@ class GameViewController: UIViewController {
             button.layer.cornerRadius = button.frame.height/2
             button.layer.borderWidth = 3
             button.layer.borderColor = accentColor?.cgColor
-            button.tintColor = survivalModeActivated == true ? .white : .black
+            button.tintColor = gameModel.survivalModeActivated == true ? .white : .black
         }
     }
     
@@ -126,15 +71,15 @@ class GameViewController: UIViewController {
     }
     
     func explainGame() {
-        let alertTitle = survivalModeActivated == true ? "Survival Mode" : (totalTime == 30 ? "Easy Mode" : "Hard Mode")
-        let alertMessage = survivalModeActivated == true ? "Are you ready for a real challenge? \nGuess as many notes as you can. \nCorrect guesses add 2 seconds to the timer, mistakes deduct 2 seconds! \nRepeat Sound button is unavailable" : "Guess as many notes as you can in \(totalTime) seconds."
+        let alertTitle = gameModel.survivalModeActivated == true ? "Survival Mode" : (gameModel.totalTime == 30 ? "Easy Mode" : "Hard Mode")
+        let alertMessage = gameModel.survivalModeActivated == true ? "Are you ready for a real challenge? \nGuess as many notes as you can. \nCorrect guesses add 2 seconds to the timer, mistakes deduct 2 seconds! \nRepeat Sound button is unavailable" : "Guess as many notes as you can in \(gameModel.totalTime) seconds."
         let explanation = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
         explanation.addAction(UIAlertAction(title: "OK", style: .default))
         present(explanation, animated: true)
     }
     
     func endGame() {
-        let endMessage = UIAlertController(title: "Time's up!", message: "You've guessed \(totalCorrect) notes correctly and made \(totalErrors) mistakes. ", preferredStyle: .alert)
+        let endMessage = UIAlertController(title: "Time's up!", message: "You've guessed \(gameModel.totalCorrect) notes correctly and made \(gameModel.totalErrors) mistakes. ", preferredStyle: .alert)
         endMessage.addAction(UIAlertAction(title: "OK", style: .default))
         present(endMessage, animated: true)
     }
@@ -144,10 +89,12 @@ class GameViewController: UIViewController {
         let url = Bundle.main.url(forResource: soundName, withExtension: "mp3")
         player = try! AVAudioPlayer(contentsOf: url!)
         player.play()
+        print(gameModel.randomNote)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        gameModel.delegate = self
         setupUI()
     }
     
@@ -158,22 +105,22 @@ class GameViewController: UIViewController {
     
     @IBAction func repeatSound(_ sender: UIButton) {
         vibration.notificationOccurred(.success)
-        playSound(randomNote)
+        playSound(gameModel.randomNote)
     }
     
     @IBAction func guess(_ sender: UIButton) {
-        if sender.currentTitle == randomNote {
-            streakCounter += 1
-            totalCorrect += 1
-            consecErrors = 0
+        if sender.currentTitle == gameModel.randomNote {
+            gameModel.streakCounter += 1
+            gameModel.totalCorrect += 1
+            gameModel.consecErrors = 0
             
-            randomNote = notes.randomElement()!
-            playSound(randomNote)
+            gameModel.randomNote = gameModel.notes.randomElement()!
+            playSound(gameModel.randomNote)
             
         } else {
-            streakCounter = 0
-            consecErrors += 1
-            totalErrors += 1
+            gameModel.streakCounter = 0
+            gameModel.consecErrors += 1
+            gameModel.totalErrors += 1
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) {
             self.topLabel.alpha = 0
@@ -195,26 +142,26 @@ class GameViewController: UIViewController {
     func startGame() {
         startTimer.setTitle("STOP TIMER", for: .normal)
         progressBar.progress = 1
-        secondsPassed = 0
-        totalCorrect = 0
-        totalErrors = 0
+        gameModel.secondsPassed = 0
+        gameModel.totalCorrect = 0
+        gameModel.totalErrors = 0
         
         enableGuesses()
         
         repeatButton.isEnabled = true
         repeatButton.alpha = 1
         
-        randomNote = notes.randomElement()!
-        playSound(randomNote)
+        gameModel.randomNote = gameModel.notes.randomElement()!
+        playSound(gameModel.randomNote)
         backButton.isEnabled = false
         
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) {
             [self] timer in
             
-            if secondsPassed < totalTime {
-                let percentageProgress = Float(secondsPassed) / Float(totalTime)
+            if gameModel.secondsPassed < gameModel.totalTime {
+                let percentageProgress = Float(gameModel.secondsPassed) / Float(gameModel.totalTime)
                 progressBar.progress = 1 - Float(percentageProgress)
-                secondsPassed += 1
+                gameModel.secondsPassed += 1
                 
             } else {
                 stopGame()
@@ -240,19 +187,63 @@ class GameViewController: UIViewController {
 }
 
 
+//MARK: - GameModelDelegate
+
+extension GameViewController: GameModelDelegate {
+    func showAnswerIsCorrect() {
+        if gameModel.totalCorrect > 0 {
+            topLabel.alpha = 1
+            topLabel.text = "Correct"
+            topLabel.backgroundColor = .green
+        }
+        if gameModel.survivalModeActivated == true {
+            gameModel.secondsPassed -= 2
+        }
+    }
+    
+    func updateLabelConsecErrors() {
+        if gameModel.consecErrors > 0 {
+            topLabel.backgroundColor = .red
+            topLabel.alpha = 1
+        }
+        if gameModel.consecErrors == 1 {
+            topLabel.text = "Wrong"
+        } else if gameModel.consecErrors == 2 {
+            topLabel.text = "Keep trying!"
+        } else if gameModel.consecErrors > 2 {
+            topLabel.text = "Don't give up!"
+        }
+    }
+    
+    func updateStreakLabel() {
+        streakLabel.alpha = 1
+        if gameModel.streakCounter == 5 {
+            streakLabel.text = "You're on a streak! \(gameModel.streakCounter) correct guesses!"
+            streakLabel.backgroundColor = backgroundColor
+        } else if gameModel.streakCounter >= 10 && gameModel.streakCounter % 5 == 0 {
+            streakLabel.text = "Insane! \(gameModel.streakCounter) correct guesses!"
+            streakLabel.backgroundColor = .yellow
+        }
+        else {
+            streakLabel.alpha = 0
+        }
+    }
+    
+    
+}
 
 
 
 
-    
 
-        
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
 

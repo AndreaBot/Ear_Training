@@ -23,7 +23,19 @@
 		623333C429B386B900644ADB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 623333C329B386B900644ADB /* Assets.xcassets */; };
 		623333C729B386B900644ADB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 623333C529B386B900644ADB /* LaunchScreen.storyboard */; };
 		62C737FD29BC8D50006B9CC2 /* PracticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C737FC29BC8D50006B9CC2 /* PracticeViewController.swift */; };
+		62FABFE92C6AAA65004AF112 /* Ear_TrainingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FABFE82C6AAA65004AF112 /* Ear_TrainingTests.swift */; };
+		62FABFF02C6AAAF9004AF112 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FABFEF2C6AAAF9004AF112 /* GameModel.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		62FABFEA2C6AAA65004AF112 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 623333AF29B386B800644ADB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 623333B629B386B800644ADB;
+			remoteInfo = "Ear Training";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		620AC6C629B9386A00EA85E4 /* A.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = A.mp3; sourceTree = "<group>"; };
@@ -44,10 +56,20 @@
 		623333C629B386B900644ADB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		623333C829B386B900644ADB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62C737FC29BC8D50006B9CC2 /* PracticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeViewController.swift; sourceTree = "<group>"; };
+		62FABFE62C6AAA65004AF112 /* Ear TrainingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Ear TrainingTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		62FABFE82C6AAA65004AF112 /* Ear_TrainingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ear_TrainingTests.swift; sourceTree = "<group>"; };
+		62FABFEF2C6AAAF9004AF112 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		623333B429B386B800644ADB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		62FABFE32C6AAA65004AF112 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -77,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				623333B929B386B800644ADB /* Ear Training */,
+				62FABFE72C6AAA65004AF112 /* Ear TrainingTests */,
 				623333B829B386B800644ADB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -85,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				623333B729B386B800644ADB /* Ear Training.app */,
+				62FABFE62C6AAA65004AF112 /* Ear TrainingTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -97,6 +121,7 @@
 				620EDD9A29BA8286008DB85E /* HomeViewController.swift */,
 				62C737FC29BC8D50006B9CC2 /* PracticeViewController.swift */,
 				623333BE29B386B800644ADB /* GameViewController.swift */,
+				62FABFEF2C6AAAF9004AF112 /* GameModel.swift */,
 				623333C029B386B800644ADB /* Main.storyboard */,
 				623333C329B386B900644ADB /* Assets.xcassets */,
 				623333C529B386B900644ADB /* LaunchScreen.storyboard */,
@@ -104,6 +129,14 @@
 				620AC6C529B9386A00EA85E4 /* Piano Notes */,
 			);
 			path = "Ear Training";
+			sourceTree = "<group>";
+		};
+		62FABFE72C6AAA65004AF112 /* Ear TrainingTests */ = {
+			isa = PBXGroup;
+			children = (
+				62FABFE82C6AAA65004AF112 /* Ear_TrainingTests.swift */,
+			);
+			path = "Ear TrainingTests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,6 +159,24 @@
 			productReference = 623333B729B386B800644ADB /* Ear Training.app */;
 			productType = "com.apple.product-type.application";
 		};
+		62FABFE52C6AAA65004AF112 /* Ear TrainingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 62FABFEC2C6AAA65004AF112 /* Build configuration list for PBXNativeTarget "Ear TrainingTests" */;
+			buildPhases = (
+				62FABFE22C6AAA65004AF112 /* Sources */,
+				62FABFE32C6AAA65004AF112 /* Frameworks */,
+				62FABFE42C6AAA65004AF112 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				62FABFEB2C6AAA65004AF112 /* PBXTargetDependency */,
+			);
+			name = "Ear TrainingTests";
+			productName = "Ear TrainingTests";
+			productReference = 62FABFE62C6AAA65004AF112 /* Ear TrainingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -133,11 +184,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1420;
+				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					623333B629B386B800644ADB = {
 						CreatedOnToolsVersion = 14.2;
+					};
+					62FABFE52C6AAA65004AF112 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 623333B629B386B800644ADB;
 					};
 				};
 			};
@@ -155,6 +210,7 @@
 			projectRoot = "";
 			targets = (
 				623333B629B386B800644ADB /* Ear Training */,
+				62FABFE52C6AAA65004AF112 /* Ear TrainingTests */,
 			);
 		};
 /* End PBXProject section */
@@ -178,6 +234,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		62FABFE42C6AAA65004AF112 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -190,10 +253,27 @@
 				62C737FD29BC8D50006B9CC2 /* PracticeViewController.swift in Sources */,
 				623333BD29B386B800644ADB /* SceneDelegate.swift in Sources */,
 				620EDD9B29BA8287008DB85E /* HomeViewController.swift in Sources */,
+				62FABFF02C6AAAF9004AF112 /* GameModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		62FABFE22C6AAA65004AF112 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				62FABFE92C6AAA65004AF112 /* Ear_TrainingTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		62FABFEB2C6AAA65004AF112 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 623333B629B386B800644ADB /* Ear Training */;
+			targetProxy = 62FABFEA2C6AAA65004AF112 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		623333C029B386B800644ADB /* Main.storyboard */ = {
@@ -385,6 +465,53 @@
 			};
 			name = Release;
 		};
+		62FABFED2C6AAA65004AF112 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = L52JR8SNCR;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.AndreaBottino.Ear-TrainingTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ear Training.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Ear Training";
+			};
+			name = Debug;
+		};
+		62FABFEE2C6AAA65004AF112 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = L52JR8SNCR;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.AndreaBottino.Ear-TrainingTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ear Training.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Ear Training";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -402,6 +529,15 @@
 			buildConfigurations = (
 				623333CC29B386B900644ADB /* Debug */,
 				623333CD29B386B900644ADB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		62FABFEC2C6AAA65004AF112 /* Build configuration list for PBXNativeTarget "Ear TrainingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				62FABFED2C6AAA65004AF112 /* Debug */,
+				62FABFEE2C6AAA65004AF112 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

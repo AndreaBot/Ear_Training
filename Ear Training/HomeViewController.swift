@@ -26,7 +26,7 @@ class HomeViewController: UIViewController {
     
     var backgroundColor: UIColor?
     var accentColor: UIColor?
-    var survivalModeActivated: Bool?
+    var survivalModeActivated = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,11 +77,11 @@ class HomeViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToGame" {
             let destinationVC = segue.destination as? GameViewController
-            destinationVC?.totalTime = totalTime
+            destinationVC?.gameModel.totalTime = totalTime
             
             destinationVC?.backgroundColor = backgroundColor
             destinationVC?.accentColor = accentColor
-            destinationVC?.survivalModeActivated = survivalModeActivated
+            destinationVC?.gameModel.survivalModeActivated = survivalModeActivated
             
         }
     }
