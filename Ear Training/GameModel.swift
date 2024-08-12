@@ -70,4 +70,19 @@ class GameModel {
         }
     }
     
+    func checkGuess(buttonTitle: String, progressGame: () -> Void) {
+        if buttonTitle == randomNote {
+            streakCounter += 1
+            totalCorrect += 1
+            consecErrors = 0
+            
+            progressGame()
+            
+        } else {
+            streakCounter = 0
+            consecErrors += 1
+            totalErrors += 1
+        }
+    }
+    
 }

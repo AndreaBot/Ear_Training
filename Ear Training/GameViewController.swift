@@ -109,19 +109,11 @@ class GameViewController: UIViewController {
     }
     
     @IBAction func guess(_ sender: UIButton) {
-        if sender.currentTitle == gameModel.randomNote {
-            gameModel.streakCounter += 1
-            gameModel.totalCorrect += 1
-            gameModel.consecErrors = 0
-            
+        gameModel.checkGuess(buttonTitle: sender.currentTitle!) {
             gameModel.randomNote = gameModel.notes.randomElement()!
             playSound(gameModel.randomNote)
-            
-        } else {
-            gameModel.streakCounter = 0
-            gameModel.consecErrors += 1
-            gameModel.totalErrors += 1
         }
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) {
             self.topLabel.alpha = 0
             self.streakLabel.alpha = 0
