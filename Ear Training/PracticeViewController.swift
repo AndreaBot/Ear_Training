@@ -19,23 +19,17 @@ class PracticeViewController: UIViewController {
     
     let vibration = UINotificationFeedbackGenerator()
     var player: AVAudioPlayer!
-    var consecErrors = 0
-    let notes = ["C", "D", "E", "F", "G", "A", "B"]
-    var randomNote = "" {
-        didSet {
-            playSound(randomNote)
-            enableGuesses()
-            repeatButton.isEnabled = true
-            repeatButton.alpha = 1
-            playButton.isEnabled = false
-            playButton.alpha = 0.3
-            topLabel.alpha = 0
-        }
-    }
+    
+    var gameModel = GameModel()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+        gameModel.delegate = self
+    }
+    
+    func setupUI() {
         disableGuesses()
         playButton.layer.cornerRadius = playButton.frame.height/3
         repeatButton.isEnabled = false
@@ -73,41 +67,63 @@ class PracticeViewController: UIViewController {
     
     @IBAction func playNote(_ sender: UIButton ) {
         vibration.notificationOccurred(.success)
-        randomNote = notes.randomElement()!
+        gameModel.randomNote = gameModel.notes.randomElement()!
+        playSound(gameModel.randomNote)
+        repeatButton.isEnabled = true
+        repeatButton.alpha = 1.0
+        enableGuesses()
     }
     
     @IBAction func repeatSound(_ sender: UIButton) {
         vibration.notificationOccurred(.success)
-        playSound(randomNote)
+        playSound(gameModel.randomNote)
     }
     
     @IBAction func guess(_ sender: UIButton) {
-        topLabel.alpha = 1
+        gameModel.checkGuess(buttonTitle: sender.currentTitle!) {
+            gameModel.randomNote = gameModel.notes.randomElement()!
+            playSound(gameModel.randomNote)
+        }
         
-        if sender.currentTitle == randomNote  {
-            consecErrors = 0
-            playButton.isEnabled = true
-            playButton.alpha = 1
-            disableGuesses()
-            repeatButton.isEnabled = false
-            repeatButton.alpha = 0.3
-            topLabel.text = "Correct"
-            topLabel.backgroundColor = .green
-            
-        } else {
-            consecErrors += 1
-            topLabel.backgroundColor = .red
-            if consecErrors == 1 {
-                topLabel.text = "Wrong"
-            } else if consecErrors == 2 {
-                topLabel.text = "Keep trying!"
-            } else if consecErrors >= 4 {
-                topLabel.text = "Don't give up!"
-            }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) {
+            self.topLabel.alpha = 0
         }
     }
     
     @IBAction func backisPressed(_ sender: UIButton) {
         dismiss(animated: true)
+    }
+}
+
+
+//MARK: - GameModelDelegate
+
+extension PracticeViewController: GameModelDelegate {
+    func showAnswerIsCorrect() {
+        if gameModel.totalCorrect > 0 {
+            topLabel.alpha = 1
+            topLabel.text = "Correct"
+            topLabel.backgroundColor = .green
+        }
+        if gameModel.survivalModeActivated == true {
+            gameModel.secondsPassed -= 2
+        }
+    }
+    
+    func updateLabelConsecErrors() {
+        if gameModel.consecErrors > 0 {
+            topLabel.backgroundColor = .red
+            topLabel.alpha = 1
+        }
+        if gameModel.consecErrors == 1 {
+            topLabel.text = "Wrong"
+        } else if gameModel.consecErrors == 2 {
+            topLabel.text = "Keep trying!"
+        } else if gameModel.consecErrors > 2 {
+            topLabel.text = "Don't give up!"
+        }
+    }
+    
+    func updateStreakLabel() {
     }
 }

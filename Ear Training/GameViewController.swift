@@ -220,8 +220,6 @@ extension GameViewController: GameModelDelegate {
             streakLabel.alpha = 0
         }
     }
-    
-    
 }
 
 
